@@ -1,3 +1,56 @@
+
+# Running the Django Project
+
+Follow these steps to set up and run the Django project on your local machine.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Python** (version 3.x): You can download it from [python.org](https://www.python.org/downloads/).
+- **pip**: This usually comes with Python, but you can check by running `pip --version`.
+- **Django**: If Django is not installed, you can install it using pip:
+  ```bash
+  pip install django
+  ```
+
+## Clone the Repository
+
+1. **Clone the project repository** to your local machine:
+   ```bash
+   git clone https://github.com/vamsi10reddy/speedesales.git
+   ```
+
+2. **Navigate to the project directory**:
+   ```bash
+   cd speedesales
+   ```
+
+## Run the Migrations
+
+Before running the server, you need to apply migrations:
+
+```bash
+python manage.py migrate
+```
+
+## Start the Development Server
+
+To run the project, use the following command:
+
+```bash
+python manage.py runserver
+```
+
+## Access the Application
+
+- Open your web browser and go to `http://127.0.0.1:8000/` to view the application.
+
+## Stopping the Server
+
+To stop the server, go back to your terminal and press `Ctrl + C`.
+
+
 Summary
 
 1. urls.py connects URLs to views.
