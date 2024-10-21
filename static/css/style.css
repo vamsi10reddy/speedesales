@@ -1,0 +1,235 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+nav {
+    background-color: #91e4e1; /* Background color for the nav */
+    padding: 10px 20px; /* Padding for top/bottom and left/right */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space items evenly */
+}
+
+.logo {
+    flex: 0 0 auto; /* Prevent logo from growing */
+}
+
+.logo-image {
+    width: 100px; /* Set the width of the logo image */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.nav-container {
+    display: flex; /* Use flexbox to arrange dropdown and search */
+    align-items: center; /* Center items vertically */
+    margin-left: 20px; /* Space between logo and nav items */
+}
+
+/* Style for the dropdown button */
+.dropbtn {
+    background-color: #333; /* Background color */
+    color: white; /* Text color */
+    padding: 8px 12px; /* Padding */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 14px; /* Font size */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Style for the dropdown container */
+.dropdown {
+    position: relative; /* Position relative to parent */
+    display: inline-block; /* Inline block display */
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none; /* Initially hide the dropdown content */
+    position: absolute; /* Position below the dropdown button */
+    background-color: #c0c0c0; /* Light grey background color */
+    min-width: 160px; /* Minimum width */
+    z-index: 1; /* On top of other elements */
+    border: 1px solid #ccc; /* Border around dropdown */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Drop shadow */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+    opacity: 0; /* Start with invisible */
+}
+
+
+/* Show the dropdown content when hovering over the dropdown container */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown */
+    opacity: 1; /* Make it fully visible */
+}
+
+/* Style for each dropdown item */
+.dropdown-content a {
+    color: #04040488; /* Text color */
+    padding: 12px 16px; /* Padding */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Block display */
+}
+
+/* Change color of links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd; /* Highlight background */
+}
+
+
+/* Style for the search bar */
+.search-bar {
+    display: flex; /* Flexbox for input and button */
+    max-width: 600px; /* Set maximum width for the search bar */
+    margin: 0 15px; /* Margin to add some space around */
+    flex-grow: 1; /* Allow the search bar to grow and fill available space */
+    background-color: white; /* White background for the search bar */
+    border-radius: 4px; /* Rounded corners for the entire search bar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    overflow: hidden; /* Prevent overflow from input */
+}
+
+.search-bar input {
+    padding: 10px; /* Padding for input */
+    border: none; /* Remove border */
+    border-radius: 4px 0 0 4px; /* Rounded corners for left side */
+    flex: 1; /* Allow the input to take up available space */
+    min-width: 0; /* Prevent input from being too small */
+    font-size: 16px; /* Increase font size for better readability */
+}
+
+/* Style for search button */
+.search-bar button {
+    padding: 10px 15px; /* Padding for button */
+    background-color: #e39631; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 0 4px 4px 0; /* Rounded corners for right side */
+    font-size: 16px; /* Increase font size for button */
+    transition: background-color 0.3s ease; /* Transition for button hover effect */
+}
+
+/* Button hover effect */
+.search-bar button:hover {
+    background-color: #d68c28; /* Darker shade on hover */
+}
+
+
+
+/* Style for navigation links */
+.nav-links {
+    display: flex; /* Use flexbox to arrange items */
+    align-items: center; /* Center items vertically */
+}
+
+.nav-links a {
+    color: white; /* Change the text color to white */
+    text-decoration: none; /* Remove underline from links */
+    margin-left: 20px; /* Space between links */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Arrange items vertically within the link */
+    align-items: center; /* Center items horizontally */
+}
+
+.nav-item {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange image above text */
+    align-items: center; /* Center items horizontally */
+}
+
+.nav-icon {
+    width: 24px;  /* Set a smaller width for the icons */
+    height: 24px; /* Set a smaller height for the icons */
+    margin-bottom: 4px; /* Space between icon and text */
+}
+
+/* Additional styles for improved layout */
+.nav-links {
+    margin-left: auto; /* Pushes the nav links to the right */
+}
+
+.category-item img {
+    width: 150px;  /* Set the width you want */
+    height: 150px; /* Set the height you want */
+    object-fit: cover; /* Ensures images keep their aspect ratio and fill the space */
+}
+
+/* Carousel container */
+.carousel {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Carousel inner wrapper */
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Carousel item */
+.carousel-item {
+    min-width: 100%; /* Make each item take full width */
+    box-sizing: border-box;
+    overflow: hidden; /* Hide overflow to prevent image overflow */
+}
+
+/* Image styling */
+.carousel-item img {
+    width: 100%; /* Makes image fill the container width */
+    height: 310px; /* Set a fixed height for all images */
+    object-fit: cover; /* Cover the area, maintaining aspect ratio */
+}
+
+
+/* Navigation arrows */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Positioning the arrows */
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Hide arrows on small screens */
+@media (max-width: 600px) {
+    .prev, .next {
+        display: none;
+    }
+}
+
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
