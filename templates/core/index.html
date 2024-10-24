@@ -35,24 +35,45 @@
         </div>
     
         <div class="nav-links">
-            <a href="#">
-                <div class="nav-item">
+            <div class="nav-item">
+                <a href="#" id="wishlist-link" onclick="addToWishlist(productId); return false;">
                     <img src="{% static 'images/wishlist-icon.jpg' %}" alt="Wishlist" class="nav-icon">
                     <span>Wishlist</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="nav-item">
+                    <span class="count" id="wishlist-count">{{ request.user.wishlist.items.count|default:0 }}</span> <!-- Count for wishlist -->
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" id="cart-link" onclick="addToCart(productId); return false;">
                     <img src="{% static 'images/cart-icon.jpg' %}" alt="Cart" class="nav-icon">
                     <span>Cart</span>
-                </div>
-            </a>
-            <a href="#">
+                    <span class="count" id="cart-count">{{ request.user.cart.cartitem_set.count|default:0 }}</span> <!-- Count for cart -->
+                </a>
+            </div>
+        </div>
+        
+
+            <!-- <a href="#">
                 <div class="nav-item">
                     <img src="{% static 'images/profile-icon.jpg' %}" alt="Profile" class="nav-icon">
                     <span>Profile</span>
                 </div>
-            </a>
+            </a> -->
+<div class="profile_dropdown">
+    <button class="profile_dropbtn">
+        <img src="{% static 'images/profile-icon.jpg' %}" alt="Profile" class="nav-icon">
+        <span class="profile-text">Profile</span> <!-- Profile text -->
+        <span class="dropdown-arrow">&#9662;</span> <!-- Dropdown arrow -->
+    </button>
+    <div class="profile_dropdown-content">
+        <a href="/user/sign-up/">SignUp</a>
+        <a href="#">Login</a>
+        <a href="#">Orders</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+</div>
+
+            
         </div>
     </nav>
         
@@ -62,12 +83,15 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="{% static 'images/banner1.jpg' %}" alt="Banner 1">
+            <button class="button">Shop Now</button>
         </div>
         <div class="carousel-item">
             <img src="{% static 'images/banner2.jpg' %}" alt="Banner 2">
+            <button class="button">Shop Now</button>
         </div>
         <div class="carousel-item">
             <img src="{% static 'images/banner3.jpg' %}" alt="Banner 3">
+            <button class="button">Shop Now</button>
         </div>
     </div>
     <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
@@ -93,5 +117,91 @@
         /* Automatic slide change every 3 seconds */
         setInterval(() => moveSlide(1), 4000);
     </script>    
+
+<script>
+    // Sample product data (replace this with the actual product ID as needed)
+    const productId = 1;
+
+    // Function to add item to wishlist
+    function addToWishlist(productId) {
+        // Simulate adding to wishlist logic
+        console.log(`Adding product ${productId} to wishlist...`);
+
+        // This is where you would make an AJAX call to your Django view to add the item
+        // and then update the count if successful.
+
+        // Example AJAX call (you need to implement this in your Django view)
+        fetch(`/wishlist/add/${productId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'), // Ensure to get CSRF token
+            },
+            body: JSON.stringify({ productId: productId })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Update wishlist count
+                const wishlistCountElement = document.getElementById('wishlist-count');
+                let currentCount = parseInt(wishlistCountElement.innerText.trim()) || 0; // Default to 0
+                wishlistCountElement.innerText = currentCount + 1; // Increase count by 1
+            } else {
+                console.error('Failed to add to wishlist.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Function to add item to cart
+    function addToCart(productId) {
+        // Simulate adding to cart logic
+        console.log(`Adding product ${productId} to cart...`);
+
+        // Similar AJAX call to add to cart
+        fetch(`/cart/add/${productId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'), // Ensure to get CSRF token
+            },
+            body: JSON.stringify({ productId: productId })
+        })
+        .then(response => {
+            if (response.ok) {
+                // Update cart count
+                const cartCountElement = document.getElementById('cart-count');
+                let currentCount = parseInt(cartCountElement.innerText.trim()) || 0; // Default to 0
+                cartCountElement.innerText = currentCount + 1; // Increase count by 1
+            } else {
+                console.error('Failed to add to cart.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Helper function to get CSRF token for AJAX requests
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Check if this cookie string begins with the name we want
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+
+
+
 </body>
 </html>

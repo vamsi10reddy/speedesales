@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
 
     # Custom Apps
     'core',
+    'userauths',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Tell Django where to store uploa
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    'site_header' : "speedesales",
+    'site_brand' : "speed-e-sales",
+    'welcome_title' : "Welcome to Speed-e-Sales",
+    'site_logo' : "images/logo.jpg",
+    'custom_css': "custom_admin.css",
+}
+
+AUTH_USER_MODEL ='userauths.User' # specify a custom user model 

@@ -31,7 +31,7 @@ nav {
 
 /* Style for the dropdown button */
 .dropbtn {
-    background-color: #333; /* Background color */
+    background-color: #0f0303; /* Background color */
     color: white; /* Text color */
     padding: 8px 12px; /* Padding */
     border: none; /* No border */
@@ -50,12 +50,12 @@ nav {
 .dropdown-content {
     display: none; /* Initially hide the dropdown content */
     position: absolute; /* Position below the dropdown button */
-    background-color: #c0c0c0; /* Light grey background color */
+    background-color: #110d0d;; /* Light grey background color */
     min-width: 160px; /* Minimum width */
     z-index: 1; /* On top of other elements */
-    border: 1px solid #ccc; /* Border around dropdown */
+    border: 1px solid #f2efef; /* Border around dropdown */
     border-radius: 8px; /* Rounded corners */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Drop shadow */
+    box-shadow: 0px 8px 16px 0px rgba(8, 1, 1, 0.2); /* Drop shadow */
     transition: opacity 0.3s ease-in-out; /* Smooth transition */
     opacity: 0; /* Start with invisible */
 }
@@ -69,7 +69,7 @@ nav {
 
 /* Style for each dropdown item */
 .dropdown-content a {
-    color: #04040488; /* Text color */
+    color: #e8dcdc88; /* Text color */
     padding: 12px 16px; /* Padding */
     text-decoration: none; /* Remove underline */
     display: block; /* Block display */
@@ -77,7 +77,7 @@ nav {
 
 /* Change color of links on hover */
 .dropdown-content a:hover {
-    background-color: #ddd; /* Highlight background */
+    background-color: rgba(240, 239, 239, 0.1); /* Light highlight on hover */
 }
 
 
@@ -178,6 +178,7 @@ nav {
     min-width: 100%; /* Make each item take full width */
     box-sizing: border-box;
     overflow: hidden; /* Hide overflow to prevent image overflow */
+    position: relative;
 }
 
 /* Image styling */
@@ -223,6 +224,28 @@ nav {
     }
 }
 
+.button {
+    position: absolute;
+    bottom: 20px; /* Distance from the bottom of the image */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff9900; /* Amazon-style orange color */
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 30px; /* Rounded edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1; /* Ensure it stays on top */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.button:hover {
+    background-color: #e68a00; /* Darker orange on hover */
+    transform: translateX(-50%) scale(1.05); /* Slight scaling on hover */
+}
+
 
 footer {
     background-color: #333;
@@ -232,4 +255,107 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+/* Profile dropdown container */
+.profile_dropdown {
+    position: relative; /* Position relative for dropdown */
+    display: inline-block; /* Display inline for the button */
+}
+
+/* Profile dropdown button */
+.profile_dropbtn {
+    background-color: transparent; /* No background for the button */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Align items in a column */
+    align-items: center; /* Center items horizontally */
+}
+
+/* Profile icon */
+.nav-icon {
+    width: 40px; /* Width of the profile icon */
+    height: 40px; /* Height of the profile icon */
+    margin-bottom: 4px; /* Space below the icon */
+}
+
+/* Profile text */
+.profile-text {
+    color: #000; /* Color of profile text */
+    font-size: 14px; /* Font size for profile text */
+    margin-bottom: 2px; /* Space below the profile text */
+}
+
+/* Dropdown arrow */
+.dropdown-arrow {
+    margin-top: 2px; /* Space between text and dropdown arrow */
+}
+
+/* Dropdown content (hidden by default) */
+.profile_dropdown-content {
+    display: none; /* Initially hide the dropdown content */
+    position: absolute; /* Position relative to the button */
+    right: 0; /* Align to the right of the button */
+    top: 100%; /* Position it directly below the button */
+    background-color: #110d0d; /* Set a white background color */
+    min-width: 160px; /* Set minimum width */
+    z-index: 1; /* On top of other elements */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+    opacity: 0; /* Start with invisible */
+}
+
+/* Show the dropdown content when hovering over the dropdown container */
+.profile_dropdown:hover .profile_dropdown-content {
+    display: block; /* Show dropdown */
+    opacity: 1; /* Make it fully visible */
+}
+
+/* Style for each dropdown item */
+.profile_dropdown-content a {
+    margin: 0; /* Remove margin */
+    padding: 12px 16px; /* Ensure consistent padding */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Block display */
+    text-align: left; /* Align text to the left */
+    background-color: transparent; /* No background color by default */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+    color: rgb(246, 248, 248);
+}
+
+/* Change color of links on hover */
+.profile_dropdown-content a:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light highlight on hover */
+}
+
+
+/* Change color of links on hover */
+.profile_dropdown-content a:hover {
+    background-color: rgba(240, 239, 239, 0.1); /* Light highlight on hover */
+}
+
+/* Prevent dropdown from going off-screen */
+@media (max-width: 600px) {
+    .profile_dropdown-content {
+        right: 0; /* Align to the right of the button */
+    }
+}
+
+
+.nav-item {
+    position: relative; /* Ensure positioning for absolute elements */
+    display: flex; /* Flex to align items */
+    align-items: center; /* Center vertically */
+}
+
+.count {
+    margin-left: 8px; /* Space between text and count */
+    background-color: rgb(126, 108, 181); /* Red background for visibility */
+    color: #fff; /* White text color */
+    border-radius: 12px; /* Rounded corners */
+    padding: 2px 6px; /* Padding for aesthetics */
+    font-size: 12px; /* Font size for the count */
 }
