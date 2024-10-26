@@ -101,6 +101,17 @@ body {
     }
 }
 
+/* Alert message styling */
+.alert-message {
+    background-color: rgb(246, 216, 216); /* Light red background */
+    color: #d52133; /* Dark red text */
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 /* Existing user section */
 .existing-user {
     margin-top: 20px;
@@ -109,7 +120,6 @@ body {
     text-align: center;
 }
 
-/* Style for the sign-in link */
 .existing-user a {
     color: #a777e3;
     text-decoration: none;
@@ -119,16 +129,4 @@ body {
 
 .existing-user a:hover {
     color: #5c1daa;
-}
-
-/* Error message styling */
-.aler-message {
-    background-color: rgb(246, 216, 216); /* Light red background */
-    color: #d52133; /* Dark red text */
-    padding: 0.75rem 1.25rem; /* Padding around the message */
-    border: 1px solid #fefefe; /* Border color */
-    border-radius: 12px; /* Rounded corners */
-    margin-bottom: 1.25rem; /* Space below the error message */
-    text-align: center; /* Centered text */
-    font-size: 0.9rem; /* Font size */
 }

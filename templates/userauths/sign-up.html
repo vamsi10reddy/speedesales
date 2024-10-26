@@ -1,10 +1,3 @@
-<!-- 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type ="submit">Register</button>
-</form> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +10,12 @@
 <body>
 
 <div class="form-container">
+    {% if form.errors %}
+    <div class="aler-message">
+        <strong> {{form.errors}}</strong>
+    </div>
+    {% endif %}
+
     <h2>Sign Up</h2>
     <form action="" method="POST">
         {% csrf_token %}
@@ -34,6 +33,10 @@
         </div>        
         <button type="submit" class="submit-btn">Register</button>
     </form>
+    
+    <div class="existing-user">
+        <p>Already a user? <a href="{% url 'userauths:login_page' %}">Sign in</a></p>
+    </div>
 </div>
 
 </body>

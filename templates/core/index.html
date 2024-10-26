@@ -65,18 +65,31 @@
         <span class="dropdown-arrow">&#9662;</span> <!-- Dropdown arrow -->
     </button>
     <div class="profile_dropdown-content">
-        <a href="/user/sign-up/">SignUp</a>
-        <a href="#">Login</a>
+        <a href="{% url 'userauths:registration_page' %}">SignUp</a>
+        <a href="{% url 'userauths:login_page' %}">Login</a>
         <a href="#">Orders</a>
         <a href="#">Settings</a>
-        <a href="#">Logout</a>
+        <a href="{% url 'userauths:sign-out' %}">Logout</a>
     </div>
 </div>
 
             
         </div>
     </nav>
-        
+ 
+    <!-- Message wrapper to collapse after fade-out -->
+    <div class="message-wrapper">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    
 
 <!-- Carousel Section -->
 <div class="carousel">
@@ -199,6 +212,20 @@
         }
         return cookieValue;
     }
+</script>
+
+<script>
+    // Function to hide messages after 5 seconds
+    setTimeout(() => {
+        const messages = document.querySelectorAll('.alert');
+        messages.forEach((message) => {
+            message.style.transition = "opacity 0.5s ease";
+            message.style.opacity = "0"; // Fade out
+            setTimeout(() => {
+                message.style.display = "none"; // Set display to none to remove the gap
+            }, 500); // Delay display:none to allow fade-out effect
+        });
+    }, 5000); // 5000 ms = 5 seconds delay
 </script>
 
 
