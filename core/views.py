@@ -9,3 +9,6 @@ class LandingPageView(View):
 
 def index(request):
     return render(request, 'core/index.html') 
+
+def indexOld(request):
+    return render(request, 'core/indexOld.html') 

@@ -2,233 +2,200 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Website</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Speed-E-Sales</title>
+
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.2/css/halfmoon.min.css" rel="stylesheet" integrity="sha256-RjeFzczeuZHCyS+Gvz+kleETzBF/o84ZRHukze/yv6o=" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">
-            <a href="#">
-                <img src="{% static 'images/logo.jpg' %}" alt="Speed E Sales Logo" class="logo-image"> <!-- Logo image -->
+    <!-- Option 1: Bootstrap JS bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-CDOy6cOibCWEdsRiZuaHf8dSGGJRYuBGC+mjoJimHGw=" crossorigin="anonymous"></script>
+ 
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg text-bg-primary" style="background-color: var(--bs-content-bg); border-bottom: var(--bs-border-width) solid var(--bs-content-border-color);">
+        <div class="container-fluid">
+            <!--LOGO-->
+            <a class="navbar-brand" href="#">
+                <h1>
+                    $peed-E-$ales
+                </h1>
             </a>
-        </div>
-    
-        <div class="nav-container">
-            <div class="dropdown">
-                <button class="dropbtn">All Categories &#9662;</button> <!-- Dropdown button with arrow -->
-                <div class="dropdown-content">
-                    <a href="#">Food</a>
-                    <a href="#">Clothing</a>
-                    <a href="#">Electronics</a>
-                    <a href="#">Shoes</a>
-                </div>
-            </div>
-    
-            <div class="search-bar">
-                <input type="text" placeholder="Search for products...">
-                <button>Search</button>
-            </div>
-        </div>
-    
-        <div class="nav-links">
-            <div class="nav-item">
-                <a href="#" id="wishlist-link" onclick="addToWishlist(productId); return false;">
-                    <img src="{% static 'images/wishlist-icon.jpg' %}" alt="Wishlist" class="nav-icon">
-                    <span>Wishlist</span>
-                    <span class="count" id="wishlist-count">{{ request.user.wishlist.items.count|default:0 }}</span> <!-- Count for wishlist -->
-                </a>
-            </div>
-            <div class="nav-item">
-                <a href="#" id="cart-link" onclick="addToCart(productId); return false;">
-                    <img src="{% static 'images/cart-icon.jpg' %}" alt="Cart" class="nav-icon">
-                    <span>Cart</span>
-                    <span class="count" id="cart-count">{{ request.user.cart.cartitem_set.count|default:0 }}</span> <!-- Count for cart -->
-                </a>
-            </div>
-        </div>
-        
-
-            <!-- <a href="#">
-                <div class="nav-item">
-                    <img src="{% static 'images/profile-icon.jpg' %}" alt="Profile" class="nav-icon">
-                    <span>Profile</span>
-                </div>
-            </a> -->
-<div class="profile_dropdown">
-    <button class="profile_dropbtn">
-        <img src="{% static 'images/profile-icon.jpg' %}" alt="Profile" class="nav-icon">
-        <span class="profile-text">Profile</span> <!-- Profile text -->
-        <span class="dropdown-arrow">&#9662;</span> <!-- Dropdown arrow -->
-    </button>
-    <div class="profile_dropdown-content">
-        <a href="{% url 'userauths:registration_page' %}">SignUp</a>
-        <a href="{% url 'userauths:login_page' %}">Login</a>
-        <a href="#">Orders</a>
-        <a href="#">Settings</a>
-        <a href="{% url 'userauths:sign-out' %}">Logout</a>
-    </div>
-</div>
-
-            
+            <!--Toggle Navbar (for small screens)-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-theme="dark" data-bs-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Collapsable Elements-->
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <h5>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu mt-lg-2 text-bg-warning rounded-top-0">
+                                <li><a class="dropdown-item" href="{% url 'userauths:registration_page' %}">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="{% url 'userauths:login_page' %}">Login</a></li>
+                                <li><a class="dropdown-item" href="#">Orders</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="{% url 'userauths:sign-out' %}">Log out</a></li>                            </ul>
+                        </li>
+                    </h5>
+                    <h5>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Cart<span class="count" id="cart-count"> ({{ request.user.cart.cartitem_set.count|default:0 }})</span> <!-- Count for cart --></a>
+                        
+                    </li>
+                    </h5>
+                    <!--Product Types-->
+                    <h5>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu mt-lg-2 text-bg-warning rounded-top-0">
+                                <li><a class="dropdown-item" href="#">Clothing</a></li>
+                                <li><a class="dropdown-item" href="#">Food</a></li>
+                                <li><a class="dropdown-item" href="#">Techonology</a></li>
+                            </ul>
+                        </li>
+                    </h5>
+                </ul>
+                <!--Search Bar-->
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search items" aria-label="Search">
+                    <button class="btn btn-primary text-bg-warning" type="submit">Search</button>
+                </form>
+          </div>
         </div>
     </nav>
- 
-    <!-- Message wrapper to collapse after fade-out -->
-    <div class="message-wrapper">
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+    <!--Product Carousel-->
+    <div id="carousel-products" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/banner_food.jpg' %}" class="d-block w-100" alt="First slide">
+                <div class="carousel-caption">
+                    <a href="#"><button type="button" class="btn btn-default text-bg-primary">Shop Food</button></a>
+                </div>
             </div>
-        {% endif %}
+            <div class="carousel-item">
+                <img src="{% static 'images/banner_clothes.jpg' %}" class="d-block w-100" alt="Second slide">
+                <div class="carousel-caption">
+                    <a href="#"><button type="button" class="btn btn-default text-bg-primary">Shop Clothing</button></a>
+                </div>  
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/banner_tech.jpg' %}" class="d-block w-100" alt="Third slide">
+                <div class="carousel-caption">
+                    <a href="#"><button type="button" class="btn btn-default text-bg-primary">Shop Tech</button></a>
+                </div>  
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-products" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-products" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    
+    <!--Featured Products-->
+    <div id="featrued-products" class="container align-items-c mt-5">
+        <!--Food Feature-->
+        <div class="row align-items-center justify-content-center">
+            <img src="{% static 'images/oldtime.jpg' %}" class="col-12 col-md-6 rounded-5" alt="...">
+            <div class="card col-12 col-md-6" >
+                <div class="card-body">
+                    <h5 class="card-title">Old timey phone</h5>
+                    <p class="card-text">
+                        Relive the good old days with this vintage rotary phone
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label for="example-select-1" class="form-label">Color:</label>
+                            <select class="form-select" id="example-select-1">
+                                <option selected>Select an option</option>
+                                <option value="regular">Blue</option>
+                                <option value="extra_toasted">Pink</option>
+                            </select>
+                        </div>
+                    </li>
+                <li class="list-group-item">
+                    <div class="mb-3">
+                        <label for="example-select-1" class="form-label">Quantity:</label>
+                        <select class="form-select" id="example-select-1">
+                            <option selected>Select an option</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">2</option>
+                            <option value="5">3</option>
+                        </select>
+                    </div>
+                </li>
+                </ul>
+                <div class="card-body">
+                <a class="me-3" href="#"><button type="button" class="btn btn-default text-bg-warning">Add to Cart</button></a>
+                <a href="#"><button type="button" class="btn btn-default text-bg-primary">See Details</button></a>
 
-<!-- Carousel Section -->
-<div class="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{% static 'images/banner1.jpg' %}" alt="Banner 1">
-            <button class="button">Shop Now</button>
+                </div>
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="{% static 'images/banner2.jpg' %}" alt="Banner 2">
-            <button class="button">Shop Now</button>
-        </div>
-        <div class="carousel-item">
-            <img src="{% static 'images/banner3.jpg' %}" alt="Banner 3">
-            <button class="button">Shop Now</button>
-        </div>
-    </div>
-    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="next" onclick="moveSlide(1)">&#10095;</button>
-</div>
+          <!--Second food item-->
+        <!--Food Feature-->
+        <div class="row mt-5 align-items-center justify-content-center">
+            <img src="{% static 'images/cheeze-crisp.jpg' %}" class="col-12 col-md-6 rounded-5" alt="...">
+            <div class="card col-12 col-md-6" >
+                <div class="card-body">
+                    <h5 class="card-title">Cheeze Crisp</h5>
+                    <p class="card-text">
+                        Salty, cheesy, and crispy snack!
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label for="example-select-1" class="form-label">Flavor:</label>
+                            <select class="form-select" id="example-select-1">
+                                <option selected>Select an option</option>
+                                <option value="regular">Regular</option>
+                                <option value="extra_toasted">Extra Toasted</option>
+                            </select>
+                        </div>
+                    </li>
+                <li class="list-group-item">
+                    <div class="mb-3">
+                        <label for="example-select-1" class="form-label">Quantity:</label>
+                        <select class="form-select" id="example-select-1">
+                            <option selected>Select an option</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">2</option>
+                            <option value="5">3</option>
+                        </select>
+                    </div>
+                </li>
+                </ul>
+                <div class="card-body">
+                <a class="me-3" href="#"><button type="button" class="btn btn-default text-bg-warning">Add to Cart</button></a>
+                <a href="#"><button type="button" class="btn btn-default text-bg-primary">Shop Tech</button></a>
 
-    <!-- Footer -->
-    <footer>
-        <p>Copyright &copy; 2024 Speed-E-Sales. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    <footer class="footer text-bg-primary align-text-c">
+            Thanks for visiting our shop!
     </footer>
-
-    <!-- JavaScript Code for Carousel -->
-    <script>
-        let currentSlide = 0;
-
-        /* Move slide function */
-        function moveSlide(direction) {
-            const items = document.querySelectorAll('.carousel-item');
-            currentSlide = (currentSlide + direction + items.length) % items.length;
-            document.querySelector('.carousel-inner').style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        /* Automatic slide change every 3 seconds */
-        setInterval(() => moveSlide(1), 4000);
-    </script>    
-
-<script>
-    // Sample product data (replace this with the actual product ID as needed)
-    const productId = 1;
-
-    // Function to add item to wishlist
-    function addToWishlist(productId) {
-        // Simulate adding to wishlist logic
-        console.log(`Adding product ${productId} to wishlist...`);
-
-        // This is where you would make an AJAX call to your Django view to add the item
-        // and then update the count if successful.
-
-        // Example AJAX call (you need to implement this in your Django view)
-        fetch(`/wishlist/add/${productId}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken'), // Ensure to get CSRF token
-            },
-            body: JSON.stringify({ productId: productId })
-        })
-        .then(response => {
-            if (response.ok) {
-                // Update wishlist count
-                const wishlistCountElement = document.getElementById('wishlist-count');
-                let currentCount = parseInt(wishlistCountElement.innerText.trim()) || 0; // Default to 0
-                wishlistCountElement.innerText = currentCount + 1; // Increase count by 1
-            } else {
-                console.error('Failed to add to wishlist.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    // Function to add item to cart
-    function addToCart(productId) {
-        // Simulate adding to cart logic
-        console.log(`Adding product ${productId} to cart...`);
-
-        // Similar AJAX call to add to cart
-        fetch(`/cart/add/${productId}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken'), // Ensure to get CSRF token
-            },
-            body: JSON.stringify({ productId: productId })
-        })
-        .then(response => {
-            if (response.ok) {
-                // Update cart count
-                const cartCountElement = document.getElementById('cart-count');
-                let currentCount = parseInt(cartCountElement.innerText.trim()) || 0; // Default to 0
-                cartCountElement.innerText = currentCount + 1; // Increase count by 1
-            } else {
-                console.error('Failed to add to cart.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    // Helper function to get CSRF token for AJAX requests
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                // Check if this cookie string begins with the name we want
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-</script>
-
-<script>
-    // Function to hide messages after 5 seconds
-    setTimeout(() => {
-        const messages = document.querySelectorAll('.alert');
-        messages.forEach((message) => {
-            message.style.transition = "opacity 0.5s ease";
-            message.style.opacity = "0"; // Fade out
-            setTimeout(() => {
-                message.style.display = "none"; // Set display to none to remove the gap
-            }, 500); // Delay display:none to allow fade-out effect
-        });
-    }, 5000); // 5000 ms = 5 seconds delay
-</script>
-
-
-
 </body>
 </html>

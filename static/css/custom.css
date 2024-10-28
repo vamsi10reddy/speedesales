@@ -1,0 +1,15 @@
+.carousel-item{
+    max-height: 70vh;
+}
+
+.footer
+{
+    height: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 5em;
+    text-align: center;
+}
