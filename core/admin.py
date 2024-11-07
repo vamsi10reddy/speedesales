@@ -3,6 +3,7 @@ from django.contrib import admin
 from core.models import Category, Product
 from django.utils.html import format_html
 # Register your models here.
+from .models import Product
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -23,3 +24,5 @@ class ProductAdmin(admin.ModelAdmin):
 # Register the models with their custom admin classes
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+
+admin.site.register(Product)
