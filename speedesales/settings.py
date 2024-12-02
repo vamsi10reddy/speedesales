@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import paypalrestsdk
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     # Custom Apps
     'core',
     'userauths',
+    'cart',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 'cart.context_processors.cart',               
             ],
         },
     },
@@ -146,3 +150,18 @@ JAZZMIN_SETTINGS = {
 }
 
 AUTH_USER_MODEL ='userauths.User' # specify a custom user model 
+# Add these settings to your settings.py
+
+PAYPAL_CLIENT_ID = 'AWrxnJgdko5_x71-FbiIfMXpq2cCIWYyI7zE6vdfRf40jLZtgPMzIuTrdp2iXM-0eQUUvVsZh6Nmn2pz'
+PAYPAL_SECRET_KEY = 'EAoQWoEraGTY_5btceODubVE-2j4M2EY2U4VsTY-Vbz2f7j9M78aVBLa5rvfRol1BPZFbGbWNI6P5_YA'
+PAYPAL_MODE = 'sandbox'  # Set to 'live' in production
+PAYPAL_RECEIVER_EMAIL = 'sb-nrib434510587@business.example.com'  # Replace with your PayPal business account email
+PAYPAL_TEST = True
+
+paypalrestsdk.configure({
+    "mode": PAYPAL_MODE,  # Change to 'live' for production
+    "client_id": PAYPAL_CLIENT_ID,
+    "client_secret": PAYPAL_SECRET_KEY,
+})
+
+

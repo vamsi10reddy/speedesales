@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icon.png' %}"/>   
     <link rel="stylesheet" href="{% static 'css/sign-up.css' %}">
 </head>
 <body>
 
 <div class="form-container">
+     <!-- Add your logo image here -->
+     <img src="{% static 'images/logo.jpg' %}" class="logo-image" style="max-width: 400px; max-height: 400px;" alt="Speed e sales logo">
+
     {% if form.errors %}
     <div class="aler-message">
         <strong> {{form.errors}}</strong>

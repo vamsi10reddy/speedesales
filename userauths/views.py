@@ -6,10 +6,11 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserChangeForm
 
 User = settings.AUTH_USER_MODEL
 
-def registration_page(request):
+def registration_page(request): 
 
     if request.method == "POST":
         form = UserRegisterForm(request.POST or None)

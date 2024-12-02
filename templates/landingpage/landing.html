@@ -25,7 +25,7 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Shadow for depth */
         }
         img {
-            width: 120px;          /* Set a larger width for the GIF */
+            width: 400px;          /* Set a larger width for the GIF */
             height: auto;          /* Maintain aspect ratio */
             margin-bottom: 20px;   /* Space below the GIF */
         }
@@ -42,13 +42,13 @@
     <script>
         // Redirect after 3 seconds without any transition effect
         setTimeout(function() {
-            window.location.href = '/urls/';  // Adjust this based on your URL pattern
+            window.location.href = '/index/';  // Adjust this based on your URL pattern
         }, 3000);
     </script>
 </head>
 <body>
     <div class="content">
-        <img src="{% static 'gif/landing.gif' %}" alt="Loading..."> <!-- Ensure this path is correct -->
+        <img src="{% static 'images/logo.jpg' %}" alt="Loading..."> 
         <h1>Welcome!</h1>
         <p>Your journey begins here. We’re excited to have you!</p>
     </div>

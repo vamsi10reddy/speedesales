@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  # This line includes your core app's URLs
     path('user/', include('userauths.urls')), # This line includes your authusers app's URLs
+    path('cart/', include('cart.urls')),  # This line includes your cart app's URLs
+
 ]
 
 if settings.DEBUG:
